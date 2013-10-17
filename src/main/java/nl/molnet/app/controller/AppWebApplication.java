@@ -1,5 +1,8 @@
 package nl.molnet.app.controller;
 
+import javax.servlet.ServletContext;
+
+import jodd.madvoc.component.MadvocConfig;
 import jodd.madvoc.petite.PetiteWebApplication;
 import jodd.petite.PetiteContainer;
 import jodd.petite.config.AutomagicPetiteConfigurator;
@@ -33,6 +36,12 @@ public class AppWebApplication extends PetiteWebApplication {
 	@Override
 	protected PetiteContainer providePetiteContainer() {
 		return super.providePetiteContainer();
+	}
+
+	@Override
+	protected void init(MadvocConfig madvocConfig, ServletContext servletContext) {
+		madvocConfig.setResultPathPrefix("/WEB-INF/jsp");
+		super.init(madvocConfig, servletContext);
 	}
 
 }
